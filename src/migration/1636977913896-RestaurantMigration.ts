@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class SubjectMigration1630238156826 implements MigrationInterface {
+export class RestaurantMigration1636977913896 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: "subject",
+            name: "restaurant",
             columns: [
                 {
                     name: "id",
@@ -15,6 +15,10 @@ export class SubjectMigration1630238156826 implements MigrationInterface {
                 },
                 {
                     name: "name",
+                    type: "varchar",
+                },
+                {
+                    name: "address",
                     type: "varchar",
                 },
                 {
@@ -30,12 +34,16 @@ export class SubjectMigration1630238156826 implements MigrationInterface {
             ]
         }), true);
 
-        await queryRunner.query(`INSERT INTO subject(id, name) VALUES(uuid_generate_v4(),'OOP')`);
-        await queryRunner.query(`INSERT INTO subject(id, name) VALUES(uuid_generate_v4(), 'Data Structures')`);
+        // await queryRunner.createForeignKey("quiz", new TableForeignKey({
+        //     columnNames: ["subject_id"],
+        //     referencedColumnNames: ["id"],
+        //     referencedTableName: "subject",
+        //     onDelete: "CASCADE"
+        // }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("subject");
+        await queryRunner.dropTable("restaurant");
     }
 
 }

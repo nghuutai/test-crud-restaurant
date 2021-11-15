@@ -32,17 +32,23 @@
 $ npm install
 ```
 
+## run migration
+
+```bash
+$ npm run db:migrate
+```
+
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
 # watch mode
 $ npm run start:dev
+```
 
-# production mode
-$ npm run start:prod
+## Open swagger
+
+```bash
+http://localhost:3000/api/#/
 ```
 
 ## Test

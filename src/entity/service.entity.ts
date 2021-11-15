@@ -1,16 +1,19 @@
-import { BaseEntity, OneToMany, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { IsDate, IsString } from 'class-validator';
 import {Type} from 'class-transformer';
-import {QuizEntity} from './quiz.entity';
 
-@Entity('subject')
-export class SubjectEntity extends BaseEntity {
+@Entity('service')
+export class ServiceEntity extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     public id: string;
 
     @Column()
     @IsString()
     public name: string;
+
+    @Column()
+    @IsString()
+    public code: string;
 
     @Column()
     @IsDate()
@@ -22,7 +25,4 @@ export class SubjectEntity extends BaseEntity {
     @Type(() => Date)
     @UpdateDateColumn()
     modify_date: Date;
-
-    @OneToMany(() => QuizEntity, quiz => quiz.subject)
-    quizs: QuizEntity[];
 }

@@ -1,9 +1,10 @@
-import {MigrationInterface, QueryRunner, Table } from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class UserMigration1626857452818 implements MigrationInterface {
+export class ServiceMigration1636977991116 implements MigrationInterface {
+
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: "user",
+            name: "service",
             columns: [
                 {
                     name: "id",
@@ -13,15 +14,11 @@ export class UserMigration1626857452818 implements MigrationInterface {
                     default: `uuid_generate_v4()`
                 },
                 {
-                    name: "username",
+                    name: "code",
                     type: "varchar",
                 },
                 {
-                    name: "password",
-                    type: "varchar",
-                },
-                {
-                    name: "role",
+                    name: "name",
                     type: "varchar",
                 },
                 {
@@ -35,13 +32,16 @@ export class UserMigration1626857452818 implements MigrationInterface {
                     default: "now()",
                 }
             ]
-        }), true)
+        }), true);
 
-        await queryRunner.query(`INSERT INTO user(id, username, password, role) VALUES(uuid_generate_v4(),'admin','admin','admin')`);
+        await queryRunner.query(`INSERT INTO service(id, code, name) VALUES(uuid_generate_v4(), 'S01','Cơm')`);
+        await queryRunner.query(`INSERT INTO service(id, code, name) VALUES(uuid_generate_v4(), 'S02', 'Phở')`);
+        await queryRunner.query(`INSERT INTO service(id, code, name) VALUES(uuid_generate_v4(), 'S03', 'Đồ hấp')`);
+        await queryRunner.query(`INSERT INTO service(id, code, name) VALUES(uuid_generate_v4(), 'S04', 'Đồ nướng')`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("user");
+        await queryRunner.dropTable("service");
     }
 
 }
